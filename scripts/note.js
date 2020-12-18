@@ -19,8 +19,8 @@ async function setNote() {
   if (!note) return;
 
   let noteContent = '';
-  
+  noteContent += `<a href="edit_note.html?note_id=${note.id}">修改笔记</a>`;
   noteContent += `<p>${note.title}</p>`;
   noteContent += `<p>${note.content}</p>`;
-  document.getElementById('note').innerHTML = noteContent;
+  document.getElementById("note").innerHTML = noteContent;
 };

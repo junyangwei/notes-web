@@ -5,6 +5,7 @@ const getCsrfTokenUrl = `${notesApiHost}/get_csrf`;
 const getAllNotesUrl = `${notesApiHost}/notes`;
 const getNoteUrl = `${notesApiHost}/notes/:id`;
 const createNoteUrl = `${notesApiHost}/create_note`;
+const updateNoteUrl = `${notesApiHost}/update_note`;
 
 /**
  * 调用接口公共函数
@@ -110,6 +111,23 @@ async function createNote(title, content) {
   );
 }
 
+/*
+ * 修改笔记
+ */
+async function updateNote(noteId, title, content) {
+  const requestBody = {
+    note_id: noteId,
+    title,
+    content,
+  };
+  const csrfToken = await getCsrfToken();
+  return axiosAPI(
+    updateNoteUrl,
+    requestBody,
+    'POST',
+    csrfToken,
+  );
+}
 /**
  * 获取后端Django框架的csrf_token
  */
@@ -144,4 +162,5 @@ export {
   getAllNotes,
   getNoteById,
   createNote,
+  updateNote,
 };
