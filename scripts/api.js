@@ -6,6 +6,7 @@ const getAllNotesUrl = `${notesApiHost}/notes`;
 const getNoteUrl = `${notesApiHost}/notes/:id`;
 const createNoteUrl = `${notesApiHost}/create_note`;
 const updateNoteUrl = `${notesApiHost}/update_note`;
+const loginUrl = `${notesApiHost}/users/login`;
 
 /**
  * 调用接口公共函数
@@ -55,6 +56,10 @@ async function axiosAPI(path, optionsParam, method = 'GET', csrfToken = '') {
 
   const code = response && Number(response.code);
   if (code !== 0) {
+    // 后台返回的错误直接抛给用户
+    if (response && response.msg) {
+      alert(response.msg);
+    }
     throw new Error(`调用接口失败，接口抛错: ${code}`);
   }
 
@@ -128,6 +133,24 @@ async function updateNote(noteId, title, content) {
     csrfToken,
   );
 }
+
+/*
+ * 账号密码登陆
+ */
+async function login(username, password) {
+  const requestBody = {
+    username,
+    password,
+  };
+  const csrfToken = await getCsrfToken();
+  return axiosAPI(
+    loginUrl,
+    requestBody,
+    'POST',
+    csrfToken,
+  );
+}
+
 /**
  * 获取后端Django框架的csrf_token
  */
@@ -163,4 +186,5 @@ export {
   getNoteById,
   createNote,
   updateNote,
+  login,
 };
