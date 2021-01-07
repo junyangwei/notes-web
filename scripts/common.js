@@ -1,3 +1,5 @@
+import { getCookie } from './api.js';
+
 /**
  * 获取请求链接中的请求参数
  * @param url 请求链接
@@ -35,7 +37,35 @@ function getNoteIdFromHref() {
   return urlParam && urlParam.note_id || 0;
 }
 
+/**
+ * 加载公共导航栏
+ */
+async function loadBaseBar() {
+  // 加载公共导航栏
+  $("#base").load("base.html");
+
+  // 等所有组件加载完成后，再渲染当前登录用户信息
+  $("#base_bar").ready(function() {
+    // 获取Cookie中的用户名
+    const username = getCookie('username');
+
+    // 如果存在，表示已登录，显示登陆的用户名
+    if (username) {
+      const loginText = document.createTextNode(`Hello, ${username}`);
+      document.getElementById("base_bar").appendChild(loginText);
+    } else {
+      // 否则，显示登陆入口
+      const newA = document.createElement("a");
+      newA.href = "login.html";
+      const loginText = document.createTextNode("login in");
+      newA.appendChild(loginText);
+      document.getElementById("base_bar").appendChild(newA);
+    }
+  });
+}
+
 export {
   getUrlQueryParams,
   getNoteIdFromHref,
+  loadBaseBar,
 }

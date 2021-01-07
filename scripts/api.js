@@ -187,4 +187,5 @@ export {
   createNote,
   updateNote,
   login,
+  getCookie,
 };

@@ -1,7 +1,9 @@
 import { getAllNotes } from './api.js';
+import { loadBaseBar } from './common.js';
+
 
 // 加载公共的顶部导航栏
-$("#base").load("base.html");
+loadBaseBar();
 
 // 加载笔记列表
 setNotesTest();
