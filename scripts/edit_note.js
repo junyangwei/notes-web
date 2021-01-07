@@ -1,8 +1,8 @@
-import { getNoteIdFromHref } from './common.js';
+import { getNoteIdFromHref, loadBaseBar } from './common.js';
 import { getNoteById, updateNote } from './api.js';
 
 // 加载公共的顶部导航栏
-$("#base").load("base.html");
+loadBaseBar();
 
 // 加载已有的笔记信息
 readyEditNoteFormData();

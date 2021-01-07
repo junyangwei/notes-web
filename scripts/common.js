@@ -46,20 +46,27 @@ async function loadBaseBar() {
 
   // 等所有组件加载完成后，再渲染当前登录用户信息
   $("#base_bar").ready(function() {
+    // 渲染前，先判断是否有相关的登陆组件，防止报null问题
+    const baseBar = document.getElementById("base_bar");
+    if (!baseBar) {
+      console.log('没有找到登陆组件');
+      return;
+    }
+
     // 获取Cookie中的用户名
     const username = getCookie('username');
 
     // 如果存在，表示已登录，显示登陆的用户名
     if (username) {
       const loginText = document.createTextNode(`Hello, ${username}`);
-      document.getElementById("base_bar").appendChild(loginText);
+      baseBar.appendChild(loginText);
     } else {
       // 否则，显示登陆入口
       const newA = document.createElement("a");
       newA.href = "login.html";
       const loginText = document.createTextNode("login in");
       newA.appendChild(loginText);
-      document.getElementById("base_bar").appendChild(newA);
+      baseBar.appendChild(newA);
     }
   });
 }
