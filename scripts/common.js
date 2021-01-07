@@ -1,4 +1,4 @@
-import { getCookie } from './api.js';
+import { getCookie, logout } from './api.js';
 
 /**
  * 获取请求链接中的请求参数
@@ -58,8 +58,16 @@ async function loadBaseBar() {
 
     // 如果存在，表示已登录，显示登陆的用户名
     if (username) {
-      const loginText = document.createTextNode(`Hello, ${username}`);
+      const loginText = document.createTextNode(`Hello, ${username}.`);
       baseBar.appendChild(loginText);
+
+      // 添加退出登录按钮
+      const logoutButton = document.createElement("button");
+      logoutButton.id = "logout";
+      logoutButton.type = "button";
+      const buttonText = document.createTextNode("log out");
+      logoutButton.appendChild(buttonText);
+      baseBar.appendChild(logoutButton);
     } else {
       // 否则，显示登陆入口
       const newA = document.createElement("a");
@@ -68,6 +76,15 @@ async function loadBaseBar() {
       newA.appendChild(loginText);
       baseBar.appendChild(newA);
     }
+
+    // 为退出登录按钮添加点击事件，退出成功后刷新当前页面
+    $("#logout").on('click', async function() {
+      const res = await logout();
+      if (res) {
+        alert('退出登录成功！');
+        window.location.reload();
+      }
+    });
   });
 }
 
