@@ -8,6 +8,7 @@ const createNoteUrl = `${notesApiHost}/create_note`;
 const updateNoteUrl = `${notesApiHost}/update_note`;
 const loginUrl = `${notesApiHost}/users/login`;
 const logoutUrl = `${notesApiHost}/users/logout`;
+const registerUrl = `${notesApiHost}/users/register`;
 
 /**
  * 调用接口公共函数
@@ -166,6 +167,25 @@ async function logout() {
 }
 
 /**
+ * 注册用户
+ */
+async function register(username, password, nickname, phone) {
+  const requestBody = {
+    username,
+    password,
+    nickname: nickname || username,
+    phone,
+  };
+  const csrfToken = await getCsrfToken();
+  return axiosAPI(
+    registerUrl,
+    requestBody,
+    'POST',
+    csrfToken,
+  );
+}
+
+/**
  * 获取后端Django框架的csrf_token
  */
 async function getCsrfToken() {
@@ -202,5 +222,6 @@ export {
   updateNote,
   login,
   logout,
+  register,
   getCookie,
 };

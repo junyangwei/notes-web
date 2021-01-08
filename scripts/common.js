@@ -69,12 +69,21 @@ async function loadBaseBar() {
       logoutButton.appendChild(buttonText);
       baseBar.appendChild(logoutButton);
     } else {
-      // 否则，显示登陆入口
-      const newA = document.createElement("a");
-      newA.href = "login.html";
-      const loginText = document.createTextNode("login in");
-      newA.appendChild(loginText);
-      baseBar.appendChild(newA);
+      // 否则，显示登陆入口以及注册入口
+      const loginA = document.createElement("a");
+      loginA.href = "login.html";
+      const loginText = document.createTextNode("log in");
+      loginA.appendChild(loginText);
+      baseBar.appendChild(loginA);
+
+      // 添加登陆和注册文案之间的分割线
+      baseBar.appendChild(document.createTextNode(" - "));
+
+      const registerA = document.createElement("a");
+      registerA.href = "register.html";
+      const registerText = document.createTextNode("register");
+      registerA.appendChild(registerText);
+      baseBar.appendChild(registerA);
     }
 
     // 为退出登录按钮添加点击事件，退出成功后刷新当前页面
