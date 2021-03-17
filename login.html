@@ -3,27 +3,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="scripts/jquery-3.5.1.min.js"></script>
     <script type="module" src="scripts/login.js" defer></script>
+    <link href="styles/login_register.css" rel="stylesheet">
     <link href="styles/login_style.css" rel="stylesheet">
   </head>
   <body>
     <a class="home_href" href="/">笔记</a>
 
-    <div class="login_div">
-      <div class="login_form">
+    <div class="login_register_div">
+      <div class="login_register_form">
         <div class="title">登陆</div></br>
 
         <form action="" name="loginForm">
           <div>
             <input type="text" id="username" placeholder="请输入用户名">
           </div>
-          <div id="username_tips"></br></div>
+          <div id="username_tips" class="error_tips"></br></div>
 
           <div>
             <input type="password" id="password" placeholder="请输入密码"><br>
           </div>
-          <div id="password_tips"></br></div></br>
+          <div id="password_tips" class="error_tips"></br></div></br>
 
-          <a class="register_href" href="register.html">注册</a>
+          <a href="register.html">注册</a>
           <button type="button" id="login">立即登陆</button>
         </form>
       </div>

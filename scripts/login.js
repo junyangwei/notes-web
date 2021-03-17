@@ -1,8 +1,5 @@
 import { login } from './api.js';
 
-// 加载公共的顶部导航栏
-$('#base').load('base.html');
-
 /**
  * 校验登陆表单数据
  */
@@ -52,7 +49,6 @@ $('#login').on('click', async function() {
 
 // 用户名输入框校验
 $('#username').on('change', function() { checkUsername(); });
-
 // 密码输入框校验
 $('#password').on('change', function() { checkPassword(); });
 
@@ -67,10 +63,12 @@ function checkUsername() {
   if (!username) {
     form.username.value = '';
     usernameTips.innerHTML = ' * 用户名不能为空';
+    document.getElementById('username').style.borderColor = 'red';
     return false;
   }
 
   usernameTips.innerHTML = '</br>';
+  document.getElementById('username').style = null;
   return true;
 }
 
@@ -85,6 +83,7 @@ function checkPassword() {
   if (!password) {
     form.password.value = '';
     usernameTips.innerHTML = ' * 密码不能为空';
+    document.getElementById('password').style.borderColor = 'red';
     return false;
   }
 

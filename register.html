@@ -3,33 +3,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="scripts/jquery-3.5.1.min.js"></script>
     <script type="module" src="scripts/register.js" defer></script>
+    <link href="styles/login_register.css" rel="stylesheet">
   </head>
   <body>
-    <div id="base"></div>
+    <a class="home_href" href="/">笔记</a>
 
-    <p>注册界面：</p>
+    <div class="login_register_div">
+      <div class="login_register_form">
+        <div class="title">注册</div></br>
 
-    <form action="" name="registerForm">
-      <div>
-        <label for="usernmae"><strong style="color:red">* </strong>用户名：</label>
-        <input type="text" id="username">
+        <form action="" name="registerForm">
+          <div>
+            <input type="text" id="username" placeholder="请输入用户名">
+          </div>
+          <div id="username_tips" class="tips">* 长度在6~18位之间，只由数字和字母组成</div>
+          <div>
+            <input type="password" id="password" placeholder="请输入密码">
+          </div>
+          <div id="password_tips" class="tips">* 长度在6~18位之间，只由数字和字母组成</div>
+          <div>
+            <input type="password" id="repeat_password" placeholder="请输入确认密码">
+          </div>
+          <div id="repeat_password_tips" class="tips">* 需要与密码保持一致</div>
+          <div>
+            <input type="text" id="nickname" placeholder="请输入昵称">
+          </div>
+          <div id="nickname_tips" class="tips">非必填项，用户昵称，长度需小于18位</div>
+          <div>
+            <input type="phone" id="phone" placeholder="请输入手机号">
+          </div>
+          <div id="phone_tips" class="tips">非必填项，用户手机号</div></br>
+
+          <a href="login.html">登录</a>
+          <button type="button" id="register">立即注册</button>
+        </form>
       </div>
-      <div>
-        <label for="password"><strong style="color:red">* </strong>密码:</label>
-        <input type="password" id="password">
-      </div>
-      <div>
-        <label for="nickname">昵称:</label>
-        <input type="text" id="nickname">
-      </div>
-      <div>
-        <label for="phone">手机号:</label>
-        <input type="phone" id="phone">
-      </div>
-      <div>
-        <button type="button" id="register">注册</button>
-      </div>
-    </form>
+    </div>
 
   </body>
 </html>
